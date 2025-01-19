@@ -100,4 +100,74 @@ for student in students:
     print(student)
 ```
 
-These examples demonstrate how to use each method in various scenarios, making it easy to interact with the database effectively.
+Here are multiple examples demonstrating different use cases for the `fetchall_with` method:
+
+### Example 1: Basic Filtering
+```python
+# Fetch records from 'products' table where 'category' is 'Electronics'
+records = prop2_instance.fetchall_with("products", category="Electronics")
+for record in records:
+    print(record)
+```
+
+### Example 2: Custom Column Selection
+```python
+# Fetch only the 'id' and 'name' columns from the 'employees' table
+options = {"columns": ["id", "name"]}
+records = prop2_instance.fetchall_with("employees", options=options)
+for record in records:
+    print(record)
+```
+
+### Example 3: Sorting Results
+```python
+# Fetch all records from 'orders' table, ordered by 'created_at' in descending order
+options = {"order_by": "created_at DESC"}
+records = prop2_instance.fetchall_with("orders", options=options)
+for record in records:
+    print(record)
+```
+
+### Example 4: Limiting Number of Results
+```python
+# Fetch top 10 records from 'sales' table where 'amount' is greater than 100
+options = {"limit": 10}
+records = prop2_instance.fetchall_with("sales", options=options, amount=">100")
+for record in records:
+    print(record)
+```
+
+### Example 5: Combined Filtering and Sorting
+```python
+# Fetch records from 'customers' table where 'region' is 'North' and order by 'last_purchase'
+options = {"columns": ["id", "name", "last_purchase"], "order_by": "last_purchase DESC"}
+records = prop2_instance.fetchall_with("customers", options=options, region="North")
+for record in records:
+    print(record)
+```
+
+### Example 6: Advanced Filtering with Multiple Conditions
+```python
+# Fetch records from 'transactions' table where 'status' is 'Completed' and 'amount' > 1000
+records = prop2_instance.fetchall_with("transactions", status="Completed", amount=">1000")
+for record in records:
+    print(record)
+```
+
+### Example 7: Using `LIKE` for Pattern Matching
+```python
+# Fetch records from 'users' table where 'email' contains 'example.com'
+records = prop2_instance.fetchall_with("users", email="LIKE %example.com%")
+for record in records:
+    print(record)
+```
+
+### Example 8: Using `IN` for Multiple Values
+```python
+# Fetch records from 'inventory' table where 'category' is either 'Books' or 'Electronics'
+records = prop2_instance.fetchall_with("inventory", category="IN ('Books', 'Electronics')")
+for record in records:
+    print(record)
+```
+
+These examples illustrate how versatile the `fetchall_with` method is for fetching data with various combinations of filtering, sorting, and limiting options.
